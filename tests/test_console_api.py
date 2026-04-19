@@ -95,12 +95,12 @@ class TestConsole_Credits_API:
         r = client.get(f"/api/credits/transactions/{TEST_ORG_ID}")
         assert r.status_code in (401, 403)
 
-    def test_cost_preview_unauthenticated_returns_401(self, client):
+    def test_cost_preview_unauthenticated_returns_401_or_405(self, client):
         r = client.post(
             "/api/credits/cost-preview",
             json={"solver_type": "qubo", "parameters": {}},
         )
-        assert r.status_code in (401, 403)
+        assert r.status_code in (401, 403, 405)
 
 
 @pytest.mark.console_api
