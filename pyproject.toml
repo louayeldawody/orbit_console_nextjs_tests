@@ -1,0 +1,22 @@
+[project]
+name = "orbit-console-nextjs-tests"
+version = "1.0.0"
+description = "E2E browser + API tests for orbit_console_nextjs"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "httpx>=0.24.0",
+    "pytest>=7.0.0",
+    "python-dotenv>=1.0.0",
+    "python-jose[cryptography]>=3.3.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--strict-markers --strict-config -v"
+markers = [
+    "console_api: API route tests against orbit_console_nextjs (CONSOLE_URL + Supabase credentials in .env)",
+]
